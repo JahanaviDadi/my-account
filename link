@@ -1,0 +1,26 @@
+WebElement p1 = driver.findElement(By.id("input-password"));
+	p1.sendKeys("papailu");
+	WebElement p2 = driver.findElement(By.name("confirm"));
+	p2.sendKeys("papailu");
+	String password1 = p1.getText();
+	String password2 = p2.getText();
+	if(password1.equals(password2))
+	{
+		System.out.println("password matched");
+	}
+	else
+	{
+		System.out.println("password does not match");
+	}
+	List oRadioButton = driver.findElements(By.name("newsletter"));
+	// Create a boolean variable which will hold the value (True/False)
+	boolean bValue = false;
+	boolean b= driver.getPageSource().contains("Subscribe");
+	if(b == true)
+	{
+		System.out.println("Subscribe radio button is present");
+	}
+	else
+	{
+		System.out.println("Subscribe radio button is not present");
+	}
