@@ -1,0 +1,173 @@
+import java.util.List;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class opencart 
+{
+	public static void main(String args[]) throws InterruptedException
+	{
+	System.setProperty("webdriver.chrome.driver","D:/Jahanavi.D/M4/chromedriver.exe");
+	WebDriver driver=new ChromeDriver();
+	driver.get("https://demo.opencart.com/");
+	System.out.println("Browser Has Been Launched");
+	
+	String actualTitle = driver.getTitle();
+	String expectedTitle = "Your Store";
+	if(expectedTitle.equals(actualTitle))
+	{
+		System.out.println("Title matched");
+	}
+	else
+	{
+		System.out.println("Title does not match");
+	}
+	//Thread.sleep(10000);
+	java.util.List<WebElement> links=driver.findElements(By.tagName("a"));
+	if(links.size()==73)
+	{
+		System.out.println("verification of links is verified...It is passed...");
+	}
+	else
+	{
+		System.out.println("verification of links is not verified...It is failed...");
+	}
+	driver.findElement(By.className("caret")).click();
+	System.out.println("My Account has been selected");
+	
+	driver.findElement(By.linkText("Register")).click();
+	System.out.println("Register has been selected");
+	
+	//Thread.sleep(10000);
+	driver.findElement(By.name("firstname")).sendKeys("Jahanavi");
+	System.out.println("The execution is paused for 10 seconds and first name successfully entered..!!!");
+	
+	//Thread.sleep(10000);
+	driver.findElement(By.xpath(".//*[@id='input-lastname']")).sendKeys("Dadi");
+	System.out.println("The execution is paused for 10 seconds and last name successfully entered..!!!");
+	
+	//Thread.sleep(10000);
+	WebElement e1 = driver.findElement(By.id("input-email"));
+	e1.sendKeys("vhjghjguy@gmail.com");
+	String email1 = e1.getText();
+	String regex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	System.out.println("The execution is paused for 10 seconds and email id successfully entered..!!!");
+	
+	
+	//Thread.sleep(10000);
+	driver.findElement(By.cssSelector("#input-telephone")).sendKeys("7032805644");
+	System.out.println("The execution is paused for 10 seconds and mobile number successfully entered..!!!");
+	
+	WebElement p1 = driver.findElement(By.id("input-password"));
+	p1.sendKeys("papailu");
+	WebElement p2 = driver.findElement(By.name("confirm"));
+	p2.sendKeys("papailu");
+	String password1 = p1.getText();
+	String password2 = p2.getText();
+	if(password1.equals(password2))
+	{
+		System.out.println("password matched");
+	}
+	else
+	{
+		System.out.println("password does not match");
+	}
+	
+	//Thread.sleep(10000);
+	System.out.println("The execution is paused for 10 seconds and passwords are successfully entered and successfully verified too..!!!");
+	List oRadioButton = driver.findElements(By.name("newsletter"));
+	// Create a boolean variable which will hold the value (True/False)
+	boolean bValue = false;
+	System.out.println("The execution is paused for 10 seconds and radio button is successfully selected..!!!");
+	boolean b= driver.getPageSource().contains("Subscribe");
+	if(b == true)
+	{
+		System.out.println("Subscribe radio button is present");
+	}
+	else
+	{
+		System.out.println("Subscribe radio button is not present");
+	}
+	
+	//Thread.sleep(10000);
+    driver.findElement(By.name("agree")).click();
+    System.out.println("The execution is paused for 10 seconds and privacy policies are agreed..!!!");
+    
+    //Thread.sleep(10000);
+    driver.findElement(By.cssSelector(".btn.btn-primary")).click();
+    System.out.println("The execution is paused for 10 seconds and continue is successfully selected..!!!");
+    Thread.sleep(100);
+    String actualTitle1 = driver.getTitle();
+	String expectedTitle1 = "Your Account Has Been Created!";
+	if(expectedTitle1.equals(actualTitle1))
+	{
+		System.out.println("Title matched");
+	}
+	else
+	{
+		System.out.println("Title does not match");
+	}
+	driver.findElement(By.xpath(".//*[@id='menu']/div[2]/ul/li[6]/a")).click();
+	driver.findElement(By.xpath(".//*[@id='content']/div[2]/div[1]/div/div[1]/a/img")).click();
+	boolean b1= driver.getPageSource().contains("HTC Touch HD");
+	if(b1 == true)
+	{
+		System.out.println("HTC Touch HD text is present");
+	}
+	else
+	{
+		System.out.println("HTC Touch HD text is not present");
+	}
+	driver.navigate().back();
+	driver.findElement(By.cssSelector(".button-group>button")).click();
+	if(driver.getPageSource().contains("Success: You have added HTC Touch HD to your shopping cart!"))
+	{
+		System.out.println("Success message is verified");
+	}
+	else
+	{
+		System.out.println("Success message is not verified");
+	}
+	driver.findElement(By.linkText("Brands")).click();
+	if(driver.getPageSource().contains("Find Your Favorite Brand"))
+	{
+		System.out.println("Find Your Favorite Brand text is verified,Passed");
+	}
+	else
+	{
+		System.out.println("Find Your Favorite Brand text is not verified,Failed");
+	}
+	driver.findElement(By.xpath(".//*[@id='content']/div[2]/div/a")).click();
+	if(driver.getPageSource().contains("Canon"))
+	{
+		System.out.println("Canon text is verified,Passed");
+	}
+	else
+	{
+		System.out.println("Canon text is not verified,Failed");
+	}
+	driver.findElement(By.xpath(".//*[@id='content']/div[2]/div/div/div[2]/div[2]/button[2]")).click();
+	if(driver.getPageSource().contains("Success: You have added Canon EOS 5D to your wish list!"))
+	{
+		System.out.println("Success: You have added Canon EOS 5D to your wish list! message is verified,Passed");
+	}
+	else
+	{
+		System.out.println("Success: You have added Canon EOS 5D to your wish list! message is not verified,Failed");
+	}
+	driver.findElement(By.xpath(".//*[@id='wishlist-total']")).click();
+	if(driver.getPageSource().contains("My Wish List"))
+	{
+		System.out.println("My Wish List text is verified,Passed");
+	}
+	else
+	{
+		System.out.println("My Wish List text is not verified,Failed");
+	}
+}
+}
